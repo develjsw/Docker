@@ -1,4 +1,4 @@
-** 공유 목적으로 작성된 내용으로 누구나 따라서 진행할 수 있도록 상세히 기재 **
+<h6>** 공유 목적으로 작성된 내용으로 누구나 따라서 진행할 수 있도록 상세히 기재 **</h6>
 
 **[ Docker 설치 및 설정 ]**
 1. Local 환경
@@ -45,4 +45,17 @@
       $ sudo systemctl start docker
       $ sudo systemctl enable docker
       ~~~
+
+<br>
+
+**[ AWS EC2 인스턴스 생성 ]**
+   - swarm 구성을 위한 서버 생성으로 3개의 서버를 동일하게 설정
+
+<br>
+
+**[ Docker Swarm 생성 ]**
+
+<br>
+
+**[ Docker Swarm 구성 ]**
 
