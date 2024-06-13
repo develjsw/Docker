@@ -50,6 +50,16 @@
 
 **[ AWS EC2 인스턴스 생성 ]**
    - swarm 구성을 위한 서버 생성으로 3개의 서버를 동일하게 설정
+   - AWS console login → 서비스 → EC2 → 인스턴스 시작
+   - 설정 값 입력
+      - 이름 설정<br>
+        ex) docker-swarm1, docker-swarm2, docker-swarm3
+      - Amazon Linux AMI 사용
+      - t2.micro 선택
+      - Key Pair 생성(첫번째) / 기존 Key Pair 사용(2~3번째)
+      - 보안그룹 생성(첫번째) / 기존 보안그룹 선택(2~3번째)
+      - SSH 트래픽 허용 - 위치 무관
+      - 스토리지 8GB - SSD gp3
 
 <br>
 
