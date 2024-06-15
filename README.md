@@ -64,6 +64,34 @@
 <br>
 
 **[ Docker Swarm 생성 ]**
+1. Swarm 클러스터 생성 명령어 실행
+   ~~~
+   # 현재 노드의 IP주소가 사용되며, Swarm 모드가 활성화되고 클러스터가 생성됨
+   # $ docker swarm init
+   
+   # 현재 노드의 IP주소가 사용되며, Swarm 모드가 활성화되고 클러스터가 생성되고, Swarm 클러스터에 참여하는 다른 노드들이 접근할 수 있는 IP주소 또는 네트워크 인터페이스를 지정함
+   # $ docker swarm init --advertise-addr [IP|INTERFACE]
+   
+   # 현재 노드의 IP주소가 사용되며, Swarm 모드가 활성화되고 클러스터가 생성되고, 다른 노드들이 연결할 수 있는 주소를 지정함. 기본값 - 0.0.0.0:2377
+   # $ docker swarm init --advertise-addr --listen-addr [IP:PORT]
+   
+   $ docker swarm init --advertise-addr 아이피
+   ~~~
+
+2. Swarm 클러스터 생성 명령어 실행 결과
+   1) Swarm 모드 활성화 : 현재 접속중인 서버의 Docker 데몬이 Swarm모드로 전환됨
+   2) 초기 리더 노드 설정 : 현재 노드가 Swarm 클러스터의 첫 번째 매니저(리더) 노드로 설정됨
+   3) Swarm 클러스터 생성 : 새로운 Swarm 클러스터가 생성됨
+   4) 토큰 생성 : 클러스터에 다른 노드를 추가할 수 있는 join 토큰이 생성됨
+   ~~~
+   Swarm initialized: current node (현재 노드의 ID값) is now a manager.
+
+	To add a worker to this swarm, run the following command:
+
+		docker swarm join --token SWMTKN-1-토큰값 아이피:2377
+
+	To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+   ~~~
 
 <br>
 
