@@ -49,11 +49,11 @@
 <br>
 
 **[ AWS EC2 인스턴스 생성 ]**
-   - swarm 구성을 위한 서버 생성으로 3개의 서버를 동일하게 설정
+   - swarm 구성을 위한 서버 생성으로 5개의 서버를 동일하게 설정
    - AWS console login → 서비스 → EC2 → 인스턴스 시작
    - 설정 값 입력
       - 이름 설정<br>
-        ex) docker-swarm1, docker-swarm2, docker-swarm3
+        ex) docker-swarm1, docker-swarm2, docker-swarm3, docker-swarm4, docker-swarm5
       - Amazon Linux AMI 사용
       - t2.micro 선택
       - Key Pair 생성(첫번째) / 기존 Key Pair 사용(2~3번째)
@@ -106,7 +106,8 @@
 	
 		To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 	   ~~~
-3. Swarm 활성화 확인
+    	<h6>** 참고 : Leader Node에 문제가 생긴 경우 Manger Node에서 자동으로 새로운 Leader Node가 선출됨(고가용성) **</h6>
+4. Swarm 활성화 확인
    - Swarm은 Docker에 내장되어 있으므로 docker info 명령어를 통해 정보 확인이 가능
      ~~~
      $ sudo docker info
@@ -115,12 +116,12 @@
      ~~~
      $ sudo docker info | grep Swarm
      ~~~
-     
+     <h6>** 참고 : Leader/Manager Node에서 사용 가능한 'docker node ls', 'docker service ls'등의 명령어 Worker Node에서는 사용 불가능 **</h6>
 <br>
 
 **[ Docker Swarm 구성 ]**
 - Worker/Manager Node 클러스터에 추가할 수 있는 명령어 받기 (Leader Node에서 실행)
-  - 클러스터에 Worker Node 추가할 수 있는 명령어 받기 
+  - 클러스터에 Worker Node 추가할 수 있는 명령어 받기(3개)
 	~~~
 	$ docker swarm join-token worker
 	
@@ -129,7 +130,7 @@
 	
 		docker swarm join --token 토큰 아이피:2377
 	~~~
-  - 클러스터에 Manager Node 추가할 수 있는 명령어 받기
+  - 클러스터에 Manager Node 추가할 수 있는 명령어 받기(2개)
 	~~~
 	$ docker swarm join-token manager
 	To add a manager to this swarm, run the following command:
@@ -141,3 +142,8 @@
 	  ~~~
 	  $ docker swarm join --token 토큰 아이피:2377
 	  ~~~
+  <h6>** 주의 : Leader Node를 포함하여 Manger Node는 홀수 갯수를 유지해야 함 **</h6>
+
+<br>
+
+**[ Docker Swarm 기타 사항 ]**
