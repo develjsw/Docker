@@ -97,17 +97,38 @@
    2) 초기 리더 노드 설정 : 현재 노드가 Swarm 클러스터의 첫 번째 매니저(리더) 노드로 설정됨
    3) Swarm 클러스터 생성 : 새로운 Swarm 클러스터가 생성됨
    4) 토큰 생성 : 클러스터에 다른 노드를 추가할 수 있는 join 토큰이 생성됨
-   ~~~
-   Swarm initialized: current node (현재 노드의 ID값) is now a manager.
-
-	To add a worker to this swarm, run the following command:
-
-		docker swarm join --token SWMTKN-1-토큰값 아이피:2377
-
-	To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
-   ~~~
+	   ~~~
+	   Swarm initialized: current node (현재 노드의 ID값) is now a manager.
+	
+		To add a worker to this swarm, run the following command:
+	
+			docker swarm join --token SWMTKN-1-토큰값 아이피:2377
+	
+		To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+	   ~~~
 
 <br>
 
 **[ Docker Swarm 구성 ]**
-
+- Worker/Manager Node 클러스터에 추가할 수 있는 명령어 받기 (Leader Node에서 실행)
+  - 클러스터에 Worker Node 추가할 수 있는 명령어 받기 
+	~~~
+	$ docker swarm join-token worker
+	
+	# 명령어 실행 결과
+	To add a worker to this swarm, run the following command:
+	
+		docker swarm join --token 토큰 아이피:2377
+	~~~
+  - 클러스터에 Manager Node 추가할 수 있는 명령어 받기
+	~~~
+	$ docker swarm join-token manager
+	To add a manager to this swarm, run the following command:
+		
+		docker swarm join --token 토큰 아이피:2377
+	~~~
+- 클러스터에 Node(Worker/Manager) 추가하기
+  - 추가할 서버로 접속 후, 위에서 받은 join 명령어 실행
+	  ~~~
+	  $ docker swarm join --token 토큰 아이피:2377
+	  ~~~
