@@ -106,7 +106,16 @@
 	
 		To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
 	   ~~~
-
+3. Swarm 활성화 확인
+   - Swarm은 Docker에 내장되어 있으므로 docker info 명령어를 통해 정보 확인이 가능
+     ~~~
+     $ sudo docker info
+     ~~~
+   - 간략하게 Swarm 활성화 여부만 확인하고 싶다면 아래 명령어를 통해 확인 가능
+     ~~~
+     $ sudo docker info | grep Swarm
+     ~~~
+     
 <br>
 
 **[ Docker Swarm 구성 ]**
