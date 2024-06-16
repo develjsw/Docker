@@ -81,15 +81,15 @@
 1. Swarm 클러스터 생성 명령어 실행
    ~~~
    # 현재 노드의 IP주소가 사용되며, Swarm 모드가 활성화되고 클러스터가 생성됨
-   # $ docker swarm init
+   # $ sudo docker swarm init
    
    # 현재 노드의 IP주소가 사용되며, Swarm 모드가 활성화되고 클러스터가 생성되고, Swarm 클러스터에 참여하는 다른 노드들이 접근할 수 있는 IP주소 또는 네트워크 인터페이스를 지정함
-   # $ docker swarm init --advertise-addr [IP|INTERFACE]
+   # $ sudo docker swarm init --advertise-addr [IP|INTERFACE]
    
    # 현재 노드의 IP주소가 사용되며, Swarm 모드가 활성화되고 클러스터가 생성되고, 다른 노드들이 연결할 수 있는 주소를 지정함. 기본값 - 0.0.0.0:2377
-   # $ docker swarm init --advertise-addr --listen-addr [IP:PORT]
+   # $ sudo docker swarm init --advertise-addr --listen-addr [IP:PORT]
    
-   $ docker swarm init --advertise-addr 아이피
+   $ sudo docker swarm init --advertise-addr 아이피
    ~~~
 
 2. Swarm 클러스터 생성 명령어 실행 결과
@@ -123,7 +123,7 @@
 - Worker/Manager Node 클러스터에 추가할 수 있는 명령어 받기 (Leader Node에서 실행)
   - 클러스터에 Worker Node 추가할 수 있는 명령어 받기(3개)
 	~~~
-	$ docker swarm join-token worker
+	$ sudo docker swarm join-token worker
 	
 	# 명령어 실행 결과
 	To add a worker to this swarm, run the following command:
@@ -132,7 +132,7 @@
 	~~~
   - 클러스터에 Manager Node 추가할 수 있는 명령어 받기(2개)
 	~~~
-	$ docker swarm join-token manager
+	$ sudo docker swarm join-token manager
 	To add a manager to this swarm, run the following command:
 		
 		docker swarm join --token 토큰 아이피:2377
@@ -140,10 +140,32 @@
 - 클러스터에 Node(Worker/Manager) 추가하기
   - 추가할 서버로 접속 후, 위에서 받은 join 명령어 실행
 	  ~~~
-	  $ docker swarm join --token 토큰 아이피:2377
+	  $ sudo docker swarm join --token 토큰 아이피:2377
 	  ~~~
   <h6>** 주의 : Leader Node를 포함하여 Manger Node는 홀수 갯수를 유지해야 함 **</h6>
 
 <br>
 
 **[ Docker Swarm 기타 사항 ]**
+- 클러스터에서 현재 node(Leader/Worker/Manager Node) 연결 끊기
+  ~~~
+  # Worker/Manager Node
+  $ sudo docker swarm leave
+
+  # Leader Node (명령어 사용시 주의 필요!)
+  $ sudo docker swarm leave --force
+  ~~~
+- 클러스터에서 node 제거(Leader/Manager Node에서 사용)
+  ~~~
+  # node의 상태가 Ready인 경우 삭제가 불가능하므로 docker swarm leave 후 진행
+  $ sudo docker node rm <노드 ID>
+  ~~~
+- 노드 상세정보 출력
+  ~~~
+  # 특정 노드의 상세정보 출력
+  $ sudo docker node inspect <노드id|호스트네임> --pretty
+  ex) docker node inspect twcctrhyg1iqf4w8tfmlbifin --pretty
+
+  # 현재 노드의 상세정보 출력
+  $ sudo docker node inspect self --pretty
+  ~~~
