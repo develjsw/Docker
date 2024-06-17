@@ -169,3 +169,17 @@
   # 현재 노드의 상세정보 출력
   $ sudo docker node inspect self --pretty
   ~~~
+- 노드 유형 변경 (promote, demote는 Leader/Manager Node에서 사용 가능)
+  ~~~
+  # worker node를 manager node로 변경
+  $ docker node demote <노드 호스트네임>
+  
+  # 여러개의 worker node를 manager node로 일괄 변경
+  $ docker node demote <노드 호스트네임1> <노드 호스트네임2> <노드 호스트네임3>
+
+  # manager node를 worker node로 변경
+  $ docker node promote <노드 호스트네임>
+
+  # 여러개의 manager node를 worker node로 일괄 변경
+  $ docker node promote <노드 호스트네임1> <노드 호스트네임2> <노드 호스트네임3>
+  ~~~
