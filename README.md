@@ -6,8 +6,9 @@
 
 2. Cloud 환경 AWS EC2 기준
    <h6>** 참고 : 2023년 이전에는 amazon-linux-extras 설치 후 amazon-linux-extras를 통해 docker를 설치 했었으나,<br>
-   2023년부터 해당 패키지는 없어졌고 yum을 통해 docker 바로 설치 가능해짐<br>
-   (공식 문서 - https://docs.aws.amazon.com/ko_kr/serverless-application-model/latest/developerguide/install-docker.html) **</h6>
+   2023년부터 해당 패키지는 없어졌고 yum을 통해 docker 바로 설치 가능해짐**<br>
+   (공식 문서 - https://docs.aws.amazon.com/ko_kr/serverless-application-model/latest/developerguide/install-docker.html)<br>
+   </h6>
 
    1. Amazon Linux IAM 2022년 이하 버전에서 docker 설치
       ~~~
